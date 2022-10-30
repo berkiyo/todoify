@@ -23,6 +23,10 @@ struct ContentView: View {
     @AppStorage("countSeconds") private var countSeconds = 0
     @State private var items = [Item]()
     
+    func placeOrder() { }
+        func adjustOrder() { }
+        func cancelOrder() { }
+    
     var body: some View {
         
         /**
@@ -45,9 +49,15 @@ struct ContentView: View {
                 .navigationTitle("Infinity")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    
+                    // This is the main toolbar of the app. 
                     ToolbarItemGroup() {
-                        Button(action: {}) {
-                            Label("Preferences", systemImage: "gear")
+                        Menu{
+                            Button("Order Now", action: placeOrder)
+                            Button("Adjust Order", action: adjustOrder)
+                            Button("Cancel", action: cancelOrder)
+                        } label: {
+                            Label("Preferences", systemImage: "gearshape")
                         }
                     }
                 
@@ -70,7 +80,6 @@ struct ContentView: View {
                                 .foregroundColor(Color.white)
                                 .padding(.bottom, 7)
                         })
-                        .background(Color.blue)
                         .cornerRadius(100)
                         .padding()
                         .shadow(color: Color.black.opacity(0.3),
