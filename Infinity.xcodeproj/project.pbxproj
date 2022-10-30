@@ -14,6 +14,8 @@
 		6018FD69290E32E400DE65FA /* InfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018FD68290E32E400DE65FA /* InfinityTests.swift */; };
 		6018FD73290E32E400DE65FA /* InfinityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018FD72290E32E400DE65FA /* InfinityUITests.swift */; };
 		6018FD75290E32E400DE65FA /* InfinityUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018FD74290E32E400DE65FA /* InfinityUITestsLaunchTests.swift */; };
+		6018FD82290E37DE00DE65FA /* GrowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018FD81290E37DE00DE65FA /* GrowingButton.swift */; };
+		6018FD84290E3F4700DE65FA /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018FD83290E3F4700DE65FA /* GradientButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		6018FD6E290E32E400DE65FA /* InfinityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfinityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6018FD72290E32E400DE65FA /* InfinityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityUITests.swift; sourceTree = "<group>"; };
 		6018FD74290E32E400DE65FA /* InfinityUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6018FD81290E37DE00DE65FA /* GrowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButton.swift; sourceTree = "<group>"; };
+		6018FD83290E3F4700DE65FA /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 			children = (
 				6018FD56290E32E300DE65FA /* InfinityApp.swift */,
 				6018FD58290E32E300DE65FA /* ContentView.swift */,
+				6018FD81290E37DE00DE65FA /* GrowingButton.swift */,
+				6018FD83290E3F4700DE65FA /* GradientButton.swift */,
 				6018FD5A290E32E400DE65FA /* Assets.xcassets */,
 				6018FD5C290E32E400DE65FA /* Infinity.entitlements */,
 				6018FD5D290E32E400DE65FA /* Preview Content */,
@@ -260,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6018FD59290E32E300DE65FA /* ContentView.swift in Sources */,
+				6018FD84290E3F4700DE65FA /* GradientButton.swift in Sources */,
 				6018FD57290E32E300DE65FA /* InfinityApp.swift in Sources */,
+				6018FD82290E37DE00DE65FA /* GrowingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
