@@ -23,10 +23,24 @@ struct ContentView: View {
     @AppStorage("countSeconds") private var countSeconds = 0
     @State private var items = [Item]()
     
-    func placeOrder() { }
-        func adjustOrder() { }
-        func cancelOrder() { }
     
+    /**
+     The Settings part of the app. (Gear Icon)
+     */
+    func buttonSettings() {
+        print("Settings Tapped")
+    }
+    func buttonHelp() {
+        print("Help Tapped")
+    }
+    func buttonAbout() {
+        print("About Tapped")
+    }
+    
+    
+    /**
+     The body of the content.
+     */
     var body: some View {
         
         /**
@@ -53,9 +67,9 @@ struct ContentView: View {
                     // This is the main toolbar of the app. 
                     ToolbarItemGroup() {
                         Menu{
-                            Button("Order Now", action: placeOrder)
-                            Button("Adjust Order", action: adjustOrder)
-                            Button("Cancel", action: cancelOrder)
+                            Button("Settings", action: buttonSettings)
+                            Button("Help", action: buttonHelp)
+                            Button("About", action: buttonAbout)
                         } label: {
                             Label("Preferences", systemImage: "gearshape")
                         }
