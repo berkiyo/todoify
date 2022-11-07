@@ -11,32 +11,17 @@ import SwiftUI
  Item Creator
  */
 
-struct Item {
-    let uuid = UUID()
-    let value: String
-}
-
 struct ContentView: View {
     @AppStorage("tapCount") private var tapCount = 0
     @AppStorage("countHours") private var countHours = 0
     @AppStorage("countMinutes") private var countMinutes = 0
     @AppStorage("countSeconds") private var countSeconds = 0
-    @State private var items = [Item]()
+    @State private var users = ["Paul", "Taylor", "Adele"]
+
     
-    
-    /**
-     The Settings part of the app. (Gear Icon)
-     */
-    func buttonSettings() {
-        print("Settings Tapped")
+    func delete(at offsets: IndexSet) {
+        users.remove(atOffsets: offsets)
     }
-    func buttonHelp() {
-        print("Help Tapped")
-    }
-    func buttonAbout() {
-        print("About Tapped")
-    }
-    
     
     /**
      The body of the content.
@@ -56,9 +41,13 @@ struct ContentView: View {
                  The form itself. This is the main content of the app.
                  */
                 Form {
-                    Section {
-                        Text("Welcome")
+                    List {
+                        ForEach(users, id: \.self) {
+                            user in Text(user)
+                        }
+                        .onDelete(perform: delete)
                     }
+                    .navigationTitle("Infinity")
                 }
                 .navigationTitle("Infinity")
                 .navigationBarTitleDisplayMode(.inline)
@@ -86,7 +75,7 @@ struct ContentView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            self.items.append(Item(value: "Item"))
+                            //self.items.append((value: "Item"))
                         }, label: {
                             Text("+")
                                 .font(.system(.largeTitle))
