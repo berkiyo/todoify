@@ -6,6 +6,10 @@
 
 import SwiftUI
 
+
+/********************
+ SplashScreenView
+ */
 struct SplashScreenView: View {
     @State private var isActive = false 
     @State private var size = 0.8
@@ -16,7 +20,7 @@ struct SplashScreenView: View {
         
         // Logic for loading the splashscreen
         if isActive {
-            ContentView()
+            ListView()
         } else {
             VStack {
                 VStack {
