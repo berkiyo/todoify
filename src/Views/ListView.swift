@@ -16,7 +16,6 @@ struct ListView: View {
                         }
                     }
                 }
-            }
             .onDelete(perform: listViewModel.deleteItem) // all from "ListViewModel.swift"
             .onMove(perform: listViewModel.moveItem)
         }
