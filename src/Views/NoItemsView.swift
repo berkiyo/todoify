@@ -15,21 +15,17 @@ struct NoItemsView: View {
                 NavigationLink(
                     destination: AddView(),
                     label: {
-                        Text("Add something! 🥳")
+                        Text("Add something! 📝")
+                            .padding(.all, 16)
+                            .background(animate ? Color.blue : Color.accentColor) // change
                             .foregroundColor(.white)
                             .font(.headline)
+                            .cornerRadius(10.0, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                             .frame(height: 55)
-                            .frame(maxWidth: .infinity)
-                            .clipShape(Capsule())
-                            .background(animate ? Color.blue : Color.accentColor) // change colour
+                            .frame(maxWidth: .infinity) 
                     }
                 )
-                .padding(.horizontal, animate ? 40 : 50) // animation
-                .clipShape(Capsule())
-                .shadow(color: animate ? Color.blue.opacity(0.7) : Color.accentColor.opacity(0.7), 
-                        radius: animate ? 30 : 10, 
-                        x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, 
-                        y: animate ? 50: 30) // shadow
+                .padding(.horizontal, animate ? 40 : 50)
                 .scaleEffect(animate ? 1.1: 1.0)
                 .offset(y: animate ? -7 : 0)
             }
