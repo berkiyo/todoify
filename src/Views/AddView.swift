@@ -16,17 +16,31 @@ struct AddView: View {
                 TextField("Type something here ...", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
+                    .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                
-                Button(action: saveButtonPressed, label: {
-                    Text("Save".uppercased())
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.accentColor)
-                        .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                })
+                    .padding(.vertical)
+
+                HStack {
+                    Button(action: saveButtonPressed, label: {
+                        Text("Save".uppercased())
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .frame(height: 55)
+                            .frame(maxWidth: 200)
+                            .background(Color.accentColor)
+                            .cornerRadius(10, antialiased: true)
+                        
+                        Button(action: clearButtonPressed, label: {
+                            Text("Clear".uppercased())
+                                .foregroundColor(.white)
+                                .font(.headline)
+                                .frame(height: 55)
+                                .frame(maxWidth: 200)
+                                .background(Color.gray)
+                                .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        })
+                    })
+                }
             }
             .padding(14) // add some padding
         }
@@ -44,6 +58,14 @@ struct AddView: View {
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         
+    }
+    
+    /**
+     clearButtonPressed()
+     When the clear button is pressed, it will clear out all the text in the field
+     */
+    func clearButtonPressed() {
+        textFieldText = ""
     }
     
     /**
@@ -66,5 +88,5 @@ struct AddView: View {
     func getAlert() -> Alert {
         return Alert(title: Text(alertTitle))
     }
-    
-}
+}   
+
