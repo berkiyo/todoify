@@ -28,10 +28,25 @@ struct ListView: View {
             }
         }
         
-        .navigationTitle("Infinity 📝")
+        .navigationTitle("Infinity")
         .navigationBarItems(
-            leading: EditButton(),
-            trailing: NavigationLink("Add", destination: AddView())
-        )
+            leading: 
+                EditButton(),
+            trailing: 
+                HStack {
+                    NavigationLink("✏️", destination: AddView())
+                    Menu("⚙️") {
+                        Button("Clear List", action: clearList)
+                        Button("Options", action: optionsPopup)
+                        Button("About", action: aboutPopup)
+                    }
+                }
+            )
+        .navigationBarTitleDisplayMode(.inline) 
     }
+    
+    // Work in progress
+    func clearList() {}
+    func optionsPopup() {}
+    func aboutPopup() {}
 }

@@ -35,6 +35,7 @@ struct NoItemsView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     func addAnimation() {
