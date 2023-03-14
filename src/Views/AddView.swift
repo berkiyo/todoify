@@ -1,4 +1,5 @@
 import SwiftUI
+import Foundation
 
 struct AddView: View {
     
@@ -10,7 +11,11 @@ struct AddView: View {
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
     
+    // For date picker
+    @State private var pickedDate = Date.now
+    
     var body: some View {
+        
         ScrollView {
             VStack {
                 TextField("Type something here ...", text: $textFieldText)
@@ -19,7 +24,14 @@ struct AddView: View {
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
-
+                
+                DatePicker("Pick your start date", selection: $pickedDate)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .frame(maxHeight: 400)
+                .padding(.vertical)
+                .padding(.vertical)
+                
+                
                 HStack {
                     Button(action: saveButtonPressed, label: {
                         Text("Save".uppercased())
@@ -54,7 +66,13 @@ struct AddView: View {
      */
     func saveButtonPressed() {
         if textIsAppropriate() { // if textIsAppropriate is true...
-            listViewModel.addItem(title: textFieldText)
+            //listViewModel.addItem(title: textFieldText)
+            // Create Date Formatter
+            let formatter1 = DateFormatter()
+            formatter1.dateStyle = .short
+            formatter1.string(from: pickedDate)
+            // add date 
+            listViewModel.addItem(title: textFieldText, theDate: formatter1.string(from: pickedDate))
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         

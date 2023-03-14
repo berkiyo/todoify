@@ -21,14 +21,7 @@ class ListViewModel: ObservableObject {
         getItems()
     }
     
-    func getItems() {
-//        let newItems = [
-//            ItemModel(title: "This is the first title!", isCompleted: false),
-//            ItemModel(title: "The Second!", isCompleted: true),
-//            ItemModel(title: "The third!", isCompleted: false)
-//        ]
-//        items.append(contentsOf: newItems) // append new the new files.
-        
+    func getItems() {   
         guard 
             let data = UserDefaults.standard.data(forKey: itemsKey),
             let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
@@ -49,8 +42,8 @@ class ListViewModel: ObservableObject {
     }
     
     // function to add items to list
-    func addItem(title: String) {
-        let newItem = ItemModel(title: title, isCompleted: false)
+    func addItem(title: String, theDate: String) {
+        let newItem = ItemModel(title: title, isCompleted: false, theDate: theDate)
         items.append(newItem)
     }
     
