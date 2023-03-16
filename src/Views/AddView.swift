@@ -25,19 +25,28 @@ struct AddView: View {
         
         ScrollView {
             VStack {
-                TextField("Type something here ...", text: $textFieldText)
+                
+                TextField("Streak name (e.g. junk food)", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
                 
-                DatePicker("Pick your start date", selection: $pickedDate)
+                HStack {
+                    Text("Start date:")
+                        .fontWeight(.medium)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading) //<-- Here
+                
+                
+                DatePicker("Streak started on date:", selection: $pickedDate)
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .frame(maxHeight: 400)
-                .padding(.vertical)
-                .padding(.vertical)
-                
+
+                padding()
+                Divider()
+                padding()
                 
                 HStack {
                     Button(action: saveButtonPressed, label: {
