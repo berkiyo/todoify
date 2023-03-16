@@ -33,20 +33,24 @@ struct AddView: View {
                     .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
                 
+                Divider() // add a divider
+                    .padding(.horizontal)
+                    .padding(.vertical)
+                
                 HStack {
-                    Text("Start date:")
+                    Text("Start Date")
                         .fontWeight(.medium)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading) //<-- Here
+                //.frame(maxWidth: .infinity, alignment: .leading) //<-- Here
                 
                 
                 DatePicker("Streak started on date:", selection: $pickedDate)
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .frame(maxHeight: 400)
 
-                padding()
-                Divider()
-                padding()
+                Divider() // add a divider
+                    .padding(.horizontal)
+                    .padding(.vertical)
                 
                 HStack {
                     Button(action: saveButtonPressed, label: {
@@ -72,7 +76,7 @@ struct AddView: View {
             }
             .padding(14) // add some padding
         }
-        .navigationTitle("Add an item ✍️")
+        .navigationTitle("Add an activity ✍️")
         .alert(isPresented: $showAlert, content: getAlert)
     }
     

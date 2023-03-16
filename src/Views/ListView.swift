@@ -6,6 +6,8 @@ struct ListView: View {
     // See --> "ListViewModel.swift"
     @EnvironmentObject var listViewModel: ListViewModel
     
+    @State private var showingAlert = false // this is for our alertview.
+    
     var body: some View {
         
         ZStack {
@@ -30,23 +32,30 @@ struct ListView: View {
         
         .navigationTitle("Infinity")
         .navigationBarItems(
-            leading: 
+            leading:
                 EditButton(),
-            trailing: 
+            trailing:
                 HStack {
-                    NavigationLink("✏️", destination: AddView())
+                    NavigationLink("✍️", destination: AddView())
                     Menu("⚙️") {
-                        Button("Clear List", action: clearList)
-                        Button("Options", action: optionsPopup)
-                        Button("About", action: aboutPopup)
+                        NavigationStack {
+                            NavigationLink(destination: SettingsView()) {
+                                Text("Settings")
+                            }
+                        }
+                        Button("About") {
+                            showingAlert = true // show popover view
+                        }
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("About Infinity"),
+                              message: Text("Infinity v0.0.1"),
+                              dismissButton: .default(Text("OK")))
                     }
                 }
             )
-        .navigationBarTitleDisplayMode(.inline) 
+        .navigationBarTitleDisplayMode(.inline)
     }
     
-    // Work in progress
-    func clearList() {}
     func optionsPopup() {}
-    func aboutPopup() {}
 }

@@ -15,7 +15,7 @@ struct InfinityApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                SplashScreenView() // When launching the app, first load the splashscreen.
+                ListView()
             }
             .environmentObject(listViewModel)
         }

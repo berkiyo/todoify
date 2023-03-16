@@ -7,4 +7,4 @@ Currently WIP.
 
 ## Testing
 
-For testing, use either the latest version of Swift Playgrounds (iPadOS) or use Xcode with iPhone 14 Pro. Then again, it should work with any iPhone.
+For testing, use either the latest version of Swift Playgrounds (iPadOS) or use Xcode with iPhone 14. Then again, it should work with any iPhone.
