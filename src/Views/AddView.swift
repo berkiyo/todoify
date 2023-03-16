@@ -1,6 +1,12 @@
 import SwiftUI
 import Foundation
 
+extension String {
+    func removeNewLines(_ delimiter: String = "") -> String {
+        self.replacingOccurrences(of: "\n", with: delimiter)
+    }
+}
+
 struct AddView: View {
     
     @Environment(\.presentationMode) var presentationMode // telling us where we are in the view hierarchy
@@ -13,6 +19,7 @@ struct AddView: View {
     
     // For date picker
     @State private var pickedDate = Date.now
+    @State private var todayDate = Date.now
     
     var body: some View {
         
@@ -67,12 +74,20 @@ struct AddView: View {
     func saveButtonPressed() {
         if textIsAppropriate() { // if textIsAppropriate is true...
             //listViewModel.addItem(title: textFieldText)
-            // Create Date Formatter
-            let formatter1 = DateFormatter()
-            formatter1.dateStyle = .short
-            formatter1.string(from: pickedDate)
-            // add date 
-            listViewModel.addItem(title: textFieldText, theDate: formatter1.string(from: pickedDate))
+            
+            // find the difference between two dates
+            let diffs = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
+            print(diffs.day!)
+            
+            // testing
+            let components = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
+            let date = Calendar.current.date(from: components) ?? todayDate
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d"
+            let newDate = formatter.string(from: date)
+            let fancyDate: String = newDate + " Days"
+            print(fancyDate) // DEBUG PURPOSES
+            listViewModel.addItem(title: textFieldText, theDate: fancyDate)
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         
