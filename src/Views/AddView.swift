@@ -44,10 +44,14 @@ struct AddView: View {
                 //.frame(maxWidth: .infinity, alignment: .leading) //<-- Here
                 
                 
+                DatePicker("Enter your date", selection: $pickedDate, displayedComponents: .date)
+                .datePickerStyle(GraphicalDatePickerStyle())
+                /*
                 DatePicker("Streak started on date:", selection: $pickedDate)
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .frame(maxHeight: 400)
 
+                 */
                 Divider() // add a divider
                     .padding(.horizontal)
                     .padding(.vertical)
@@ -92,15 +96,7 @@ struct AddView: View {
             let diffs = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
             print(diffs.day!)
             
-            // testing
-            let components = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
-            let date = Calendar.current.date(from: components) ?? todayDate
-            let formatter = DateFormatter()
-            formatter.dateFormat = "d"
-            let newDate = formatter.string(from: date)
-            let fancyDate: String = newDate + " Days"
-            print(fancyDate) // DEBUG PURPOSES
-            listViewModel.addItem(title: textFieldText, theDate: fancyDate)
+            listViewModel.addItem(title: textFieldText, theDate: Int(diffs.day!))
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         

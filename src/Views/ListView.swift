@@ -8,6 +8,8 @@ struct ListView: View {
     
     @State private var showingAlert = false // this is for our alertview.
     
+    // Checking if 24 hours has lapsed
+    
     var body: some View {
         
         ZStack {
@@ -20,7 +22,14 @@ struct ListView: View {
                         item in ListRowView(item: item)
                             .onTapGesture {
                                 withAnimation(.linear) {
-                                    listViewModel.updateItem(item: item)
+                                    listViewModel.updateItem(item: item) // update item
+                                    
+                                    // formatting the date
+                                    let formatter = DateFormatter()
+                                    formatter.dateFormat = "d"
+                                    let newDate = formatter.string(from: item.todaysDate)
+                                    let newDateInt = Int(newDate) ?? 0
+                                    print(newDateInt) // DEBUG PURPOSES
                                 }
                             }
                     }
@@ -58,4 +67,5 @@ struct ListView: View {
     }
     
     func optionsPopup() {}
+    
 }
