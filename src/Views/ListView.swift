@@ -47,13 +47,23 @@ struct ListView: View {
                 HStack {
                     NavigationLink("✍️", destination: AddView())
                     Menu("⚙️") {
-                        NavigationStack {
-                            NavigationLink(destination: SettingsView()) {
-                                Text("Settings")
-                            }
+                        Button("❓ How To Guide") {
+                           // 
                         }
-                        Button("About") {
+                        Button("📱 Change App Icon") {
+                         //   
+                        }
+                        Button("🧐 About") {
                             showingAlert = true // show popover view
+                        }
+                        Button("💎 Infinity Premium") {
+                            showingAlert = true // temporary
+                        }
+                        Button("✉️ Feedback") {
+                            showingAlert = true // temporary
+                        }
+                        Button("⭐️ Rate on App Store") {
+                            showingAlert = true // temporary
                         }
                     }
                     .alert(isPresented: $showingAlert) {
@@ -62,7 +72,7 @@ struct ListView: View {
                               dismissButton: .default(Text("OK")))
                     }
                 }
-            )
+        )
         .navigationBarTitleDisplayMode(.inline)
     }
     
