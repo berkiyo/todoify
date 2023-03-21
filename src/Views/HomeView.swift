@@ -1,19 +1,22 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var selection = 1
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             ListView()
                 .tabItem {
                     Label("Goals", systemImage: "infinity")
                 }
+            .tag(1)
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+            .tag(2)
         }
-        .navigationTitle("Infinity")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(selection == 1 ? "Goals" : "Settings") // << here !!        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
