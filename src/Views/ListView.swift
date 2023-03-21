@@ -16,7 +16,6 @@ struct ListView: View {
      */
     @State var isModal: Bool = false
     var body: some View {
-        
         ZStack {
             if listViewModel.items.isEmpty { // if there are no items, run this code.
                 NoItemsView()
@@ -61,18 +60,24 @@ struct ListView: View {
                      
                      */
                     NavigationLink("✍️", destination: AddView())
-                    
                     /**
                      Menu Buttons
                      */
                     Menu("⚙️") {
-                        Button("❓ How To Guide", action: menuGuide)
-                        Button("📱 Change App Icon", action: menuAppIcon)
-                        Button("🧐 About", action: menuAbout)
-                        Button("💎 Infinity Premium", action: menuPremium)
-                        Button("✉️ Feedback", action: menuFeedback)
-                        Button("⭐️ Rate on App Store", action: menuRate)
-                    }
+                       NavigationView {
+                           NavigationLink {
+                               AddView()
+                           } label: {
+                               Text("❓ How to Guide #1")
+                           }
+                           Button("❓ How To Guide", action: menuGuide)
+                           Button("📱 Change App Icon", action: menuAppIcon)
+                           Button("🧐 About", action: menuAbout)
+                           Button("💎 Infinity Premium", action: menuPremium)
+                           Button("✉️ Feedback", action: menuFeedback)
+                           Button("⭐️ Rate on App Store", action: menuRate)
+                       }
+                   }          
                 }
         )
         .navigationBarTitleDisplayMode(.inline)
@@ -82,7 +87,13 @@ struct ListView: View {
     /**
      Menu Functionality
      */
-    func menuGuide() {}
+    func menuGuide() {
+        struct PLACEHOLDER: View {
+            var body: some View {
+                Text("Hello World")
+            }
+        }
+    }
     func menuAppIcon() {}
     func menuAbout() {}
     func menuPremium() {}
