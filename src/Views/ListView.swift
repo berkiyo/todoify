@@ -7,14 +7,12 @@ struct ListView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     
     @State private var showingAlert = false // this is for our alertview.
-    
-    // Checking if 24 hours has lapsed
-    // tbc
-    
-    /* 
-     define variables for menu:
-     */
+    @State var isEditing = false //
     @State var isModal: Bool = false
+    
+    /**
+     Start Body
+     */
     var body: some View {
         ZStack {
             if listViewModel.items.isEmpty { // if there are no items, run this code.
@@ -40,63 +38,21 @@ struct ListView: View {
                     .onDelete(perform: listViewModel.deleteItem) // all from "ListViewModel.swift"
                     .onMove(perform: listViewModel.moveItem)
                 }
-            }
+                .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(.easeIn)
+            }       
         }
-        
         .navigationTitle("Infinity")
         .navigationBarItems(
-            leading:
-                EditButton(),
+            leading: 
+                Button(action: {
+                    self.isEditing.toggle()
+                }) {
+                    Text(isEditing ? "✅" : "✏️")
+                },
             trailing:
                 HStack {
-                    /* start menu here:
-                    
-                     - How to guide
-                     - Change app icon
-                     - About
-                     - Infinity premium
-                     - Feedback
-                     - Rate on app store
-                     
-                     */
-                    NavigationLink("✍️", destination: AddView())
-                    /**
-                     Menu Buttons
-                     */
-                    Menu("⚙️") {
-                       NavigationView {
-                           NavigationLink {
-                               AddView()
-                           } label: {
-                               Text("❓ How to Guide #1")
-                           }
-                           Button("❓ How To Guide", action: menuGuide)
-                           Button("📱 Change App Icon", action: menuAppIcon)
-                           Button("🧐 About", action: menuAbout)
-                           Button("💎 Infinity Premium", action: menuPremium)
-                           Button("✉️ Feedback", action: menuFeedback)
-                           Button("⭐️ Rate on App Store", action: menuRate)
-                       }
-                   }          
+                    NavigationLink("💎", destination: AddView())
                 }
         )
-        .navigationBarTitleDisplayMode(.inline)
     }
-    
-    
-    /**
-     Menu Functionality
-     */
-    func menuGuide() {
-        struct PLACEHOLDER: View {
-            var body: some View {
-                Text("Hello World")
-            }
-        }
-    }
-    func menuAppIcon() {}
-    func menuAbout() {}
-    func menuPremium() {}
-    func menuFeedback() {}
-    func menuRate() {}
 }

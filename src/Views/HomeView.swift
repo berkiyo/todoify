@@ -7,14 +7,13 @@ struct HomeView: View {
                 .tabItem {
                     Label("Goals", systemImage: "infinity")
                 }
-            AddView()
-                .tabItem {
-                    Label("Add Task", systemImage: "plus.square")
-                }
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .navigationTitle("Infinity")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
+
