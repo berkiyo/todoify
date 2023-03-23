@@ -7,11 +7,13 @@ struct ListView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     
     @State private var showingAlert = false // this is for our alertview.
+    @State var isEditing = false
+    @State var isModal: Bool = false
     
-    // Checking if 24 hours has lapsed
-    
+    /**
+     Start Body
+     */
     var body: some View {
-        
         ZStack {
             if listViewModel.items.isEmpty { // if there are no items, run this code.
                 NoItemsView()
@@ -36,36 +38,21 @@ struct ListView: View {
                     .onDelete(perform: listViewModel.deleteItem) // all from "ListViewModel.swift"
                     .onMove(perform: listViewModel.moveItem)
                 }
-            }
+                .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(.easeIn)
+            }       
         }
-        
         .navigationTitle("Infinity")
         .navigationBarItems(
-            leading:
-                EditButton(),
+            leading: 
+                Button(action: {
+                    self.isEditing.toggle()
+                }) {
+                    Text(isEditing ? "✅" : "✏️")
+                },
             trailing:
                 HStack {
-                    NavigationLink("✍️", destination: AddView())
-                    Menu("⚙️") {
-                        NavigationStack {
-                            NavigationLink(destination: SettingsView()) {
-                                Text("Settings")
-                            }
-                        }
-                        Button("About") {
-                            showingAlert = true // show popover view
-                        }
-                    }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("About Infinity"),
-                              message: Text("Infinity v0.0.1"),
-                              dismissButton: .default(Text("OK")))
-                    }
+                    NavigationLink("➕", destination: AddView())
                 }
-            )
-        .navigationBarTitleDisplayMode(.inline)
+        )
     }
-    
-    func optionsPopup() {}
-    
 }
