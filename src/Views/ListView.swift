@@ -7,7 +7,7 @@ struct ListView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     
     @State private var showingAlert = false // this is for our alertview.
-    @State var isEditing = false //
+    @State var isEditing = false
     @State var isModal: Bool = false
     
     /**
@@ -51,7 +51,7 @@ struct ListView: View {
                 },
             trailing:
                 HStack {
-                    NavigationLink("💎", destination: AddView())
+                    NavigationLink("➕", destination: AddView())
                 }
         )
     }

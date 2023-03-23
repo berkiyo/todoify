@@ -16,7 +16,8 @@ struct HomeView: View {
                 }
             .tag(2)
         }
-        .navigationTitle(selection == 1 ? "Goals" : "Settings") // << here !!        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(selection == 1 ? "Goals" : "Settings")
+        .navigationBarTitleDisplayMode(.inline)// << here !! 
     }
 }
 
