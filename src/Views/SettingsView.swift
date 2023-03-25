@@ -17,7 +17,7 @@ struct SettingsView: View {
                             Text("📱 Change App Icon")
                         }
                         NavigationLink { AboutView() } label: {
-                            Text("🧐 About")
+                            Text("🧐 About Infinity")
                         }
                         NavigationLink { PremiumView() } label: {
                             Text("💎 Infinity Premium")
@@ -33,4 +33,5 @@ struct SettingsView: View {
             }
         }
     }
+    
 }

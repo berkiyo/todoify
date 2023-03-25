@@ -6,6 +6,23 @@
 
 import SwiftUI
 
+
+/** 
+ Identify the device our app is running on
+ */
+extension UIDevice {
+    static var idiom: UIUserInterfaceIdiom {
+        UIDevice.current.userInterfaceIdiom
+    }
+    static var isiPad: Bool {
+        idiom == .pad
+    }
+    
+    static var isiPhone: Bool {
+        idiom == .phone
+    }
+}
+
 @main
 struct InfinityApp: App {
     
@@ -13,11 +30,12 @@ struct InfinityApp: App {
     
     // the body
     var body: some Scene {
+        // TODO: Have iPad and iPhone support
         WindowGroup {
             NavigationView {
                 HomeView() 
+                    .environmentObject(listViewModel)
             }
-            .environmentObject(listViewModel)
         }
     }
 }
