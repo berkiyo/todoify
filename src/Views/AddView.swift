@@ -21,11 +21,16 @@ struct AddView: View {
     @State private var pickedDate = Date.now
     @State private var todayDate = Date.now
     
+    // For color picker
+    @State private var selectedColor: Color = .red
+    
     var body: some View {
         
+        /**
+         The styling of the AddView goes here.
+         */
         ScrollView {
             VStack {
-                
                 TextField("Streak name (e.g. junk food)", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
@@ -37,6 +42,27 @@ struct AddView: View {
                     .padding(.horizontal)
                     .padding(.vertical)
                 
+                Text("Pick your color")
+                    .fontWeight(.medium)
+                
+                // COLOR PICKER
+                ColorPickerView(selectedColor: $selectedColor)
+                    .padding(.horizontal)
+                Spacer()
+                
+                HStack {
+                    Text("Selected Color")
+                        .padding(.vertical)
+                    Circle()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(selectedColor)
+                }
+                .padding(.vertical)
+
+                
+                /**
+                 BEGIN DATE/CALENDAR LOGIC
+                 */
                 HStack {
                     Text("Start Date")
                         .fontWeight(.medium)
@@ -44,13 +70,13 @@ struct AddView: View {
                 //.frame(maxWidth: .infinity, alignment: .leading) //<-- Here
                 
                 
-                DatePicker("Enter your date", selection: $pickedDate, displayedComponents: .date)
-                .datePickerStyle(GraphicalDatePickerStyle())
-                /*
-                DatePicker("Streak started on date:", selection: $pickedDate)
+                DatePicker("Enter your date", selection: $pickedDate, in: ...Date())
                     .datePickerStyle(GraphicalDatePickerStyle())
-                    .frame(maxHeight: 400)
-
+                /*
+                 DatePicker("Streak started on date:", selection: $pickedDate)
+                 .datePickerStyle(GraphicalDatePickerStyle())
+                 .frame(maxHeight: 400)
+                 
                  */
                 Divider() // add a divider
                     .padding(.horizontal)
@@ -83,20 +109,44 @@ struct AddView: View {
         .navigationTitle("Add an activity ✍️")
         .alert(isPresented: $showAlert, content: getAlert)
     }
+    /**
+     COLOR PICKER CALCULATIONS
+     This is where we calculate what color value we want to set it to
+     **/
+    func colorConverter() -> Int {
+        switch selectedColor {
+        case .red:
+            return 0
+        case .yellow:
+            return 1
+        case .orange:
+            return 2
+        case .purple:
+            return 3
+        case .blue: 
+            return 4
+        case .indigo:
+            return 5
+        case .green:
+            return 6
+        case .mint:
+            return 7
+        default:
+            return 0
+        }
+    }
     
     /**
-     saveButtonPressed() 
+     saveButtonPressed()
      When the save button is pressed, this function comes into action.
      */
     func saveButtonPressed() {
         if textIsAppropriate() { // if textIsAppropriate is true...
-            //listViewModel.addItem(title: textFieldText)
-            
             // find the difference between two dates
             let diffs = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
             print(diffs.day!)
             
-            listViewModel.addItem(title: textFieldText, theDate: Int(diffs.day!))
+            listViewModel.addItem(title: textFieldText, theDate: Int(diffs.day!), theStartDate: pickedDate, theColor: colorConverter())
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         
@@ -111,9 +161,9 @@ struct AddView: View {
     }
     
     /**
-     textIsAppropriate() 
+     textIsAppropriate()
      Check and see if the number of characters is appropriate
-     */    
+     */
     func textIsAppropriate() -> Bool {
         if textFieldText.count < 3 {
             alertTitle = "Your new todo item must be at least 3 characters long!"
@@ -130,5 +180,5 @@ struct AddView: View {
     func getAlert() -> Alert {
         return Alert(title: Text(alertTitle))
     }
-}   
+}
 

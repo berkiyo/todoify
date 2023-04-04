@@ -7,7 +7,7 @@ import Foundation
  - Read
  - Update
  - Delete
-*/
+ */
 class ListViewModel: ObservableObject {
     // @State can only be used in a View, not a class.
     
@@ -42,8 +42,8 @@ class ListViewModel: ObservableObject {
     }
     
     // function to add items to list
-    func addItem(title: String, theDate: Int) {
-        let newItem = ItemModel(title: title, isCompleted: false, theDate: theDate, todaysDate: Date.now)
+    func addItem(title: String, theDate: Int, theStartDate: Date, theColor: Int) {
+        let newItem = ItemModel(title: title, isCompleted: false, theDate: theDate, theStartDate: theStartDate, theColor: theColor)
         items.append(newItem)
     }
     
