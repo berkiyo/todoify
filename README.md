@@ -11,9 +11,7 @@ It is designed to be easy to use and stay out of the way.
 
 This is still WIP so it will likely change!
 
-<img src="media/1.png" width="30%">
-<img src="media/2.png" width="30%">
-<img src="media/3.png" width="30%">
+<img src="media/1.png" width="30%"> <img src="media/2.png" width="30%"> <img src="media/3.png" width="30%">
 
 ## What is the difference between "infinity" and "infinity-app" repo?
 
