@@ -2,11 +2,19 @@ import SwiftUI
 
 struct ListRowView: View {
     @Environment(\.scenePhase) var scenePhase
-    let item: ItemModel    
+    let item: ItemModel
     /**
      MAIN BODY
      */
     var body: some View {
+        // This is where we put thenumber of days since calculation, nice and simple
+        
+        // Difference between start date + today's date
+        // see if hour
+        let diffs = Calendar.current.dateComponents([.day], from: item.theStartDate, to: Date.now)
+        let diffsString = "\(diffs.day!)"
+        
+        // View begins here
         HStack {
             
             /**
@@ -22,7 +30,9 @@ struct ListRowView: View {
             VStack(alignment: .trailing){
                 let dateStored = String(item.theDate)
                 
-                Text(dateStored + " Days")
+                
+                Text(diffsString + " days")
+                
                 Text("Since: " + item.theStartDate.formatted())
                     .font(.caption)
                 
@@ -45,7 +55,7 @@ struct ListRowView: View {
             return .orange
         case 3:
             return .purple
-        case 4: 
+        case 4:
             return .blue
         case 5:
             return .indigo

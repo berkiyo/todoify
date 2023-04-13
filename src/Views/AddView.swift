@@ -58,7 +58,7 @@ struct AddView: View {
                         .foregroundColor(selectedColor)
                 }
                 .padding(.vertical)
-
+                
                 
                 /**
                  BEGIN DATE/CALENDAR LOGIC
@@ -123,7 +123,7 @@ struct AddView: View {
             return 2
         case .purple:
             return 3
-        case .blue: 
+        case .blue:
             return 4
         case .indigo:
             return 5
