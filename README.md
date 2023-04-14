@@ -9,9 +9,16 @@ It is designed to be easy to use and stay out of the way.
 
 ## screenshots
 
+### iPhone
+
 This is still WIP so it will likely change!
 
 <img src="media/1.png" width="30%"> <img src="media/2.png" width="30%"> <img src="media/3.png" width="30%">
+
+### iPad
+
+<img src="media/1-ipad.png" width="40%"> 
+<img src="media/2-ipad.png" width="40%"> 
 
 ## What is the difference between "infinity" and "infinity-app" repo?
 
