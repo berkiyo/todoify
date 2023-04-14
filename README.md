@@ -1,5 +1,5 @@
 # infinity-app
-📅 A day counter app that is simple and elegant. (Xcode Version)
+📅 A day counter app that is simple and elegant. (Swift Playgrounds Version)
 
 ## What does it do?
 
@@ -7,18 +7,25 @@ Infinity is designed to be streak/goal tracker and help the user keep track of h
 
 It is designed to be easy to use and stay out of the way.
 
+## Features
+
+- Clean and simple goal tracker
+- No ads
+- No tracking
+- All data is stored locally (100% open source)
+
 ## screenshots
 
 ### iPhone
 
-This is still WIP so it will likely change!
+Note: These are outdated for iPhone, this will change in final release.
 
 <img src="media/1.png" width="30%"> <img src="media/2.png" width="30%"> <img src="media/3.png" width="30%">
 
 ### iPad
 
-<img src="media/1-ipad.png" width="40%"> 
-<img src="media/2-ipad.png" width="40%"> 
+<img src="media/1-ipad.png" width="80%"> 
+<img src="media/2-ipad.png" width="80%"> 
 
 ## What is the difference between "infinity" and "infinity-app" repo?
 
