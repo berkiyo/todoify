@@ -7,7 +7,7 @@
 import SwiftUI
 
 
-/** 
+/**
  Identify the device our app is running on
  */
 extension UIDevice {
@@ -33,9 +33,10 @@ struct InfinityApp: App {
         // TODO: Have iPad and iPhone support
         WindowGroup {
             NavigationView {
-                HomeView() 
+                HomeView()
                     .environmentObject(listViewModel)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
