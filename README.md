@@ -22,7 +22,7 @@ It works on iPad and iPhone and for techies, this was built 100% using Swift Pla
 
 Note: These are outdated for iPhone, this will change in final release.
 
-<img src="media/1.png" width="30%"> <img src="media/2.png" width="30%"> <img src="media/3.png" width="30%">
+- Coming soon.
 
 ### iPad
 
