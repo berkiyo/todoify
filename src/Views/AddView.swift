@@ -17,10 +17,6 @@ struct AddView: View {
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
     
-    // For date picker
-    @State private var pickedDate = Date.now
-    @State private var todayDate = Date.now
-    
     // For color picker
     @State private var selectedColor: Color = .red
     
@@ -49,9 +45,6 @@ struct AddView: View {
                 ColorPickerView(selectedColor: $selectedColor)
                     .padding(.horizontal, 5)
                     .padding(.bottom, 50)
-                    
-                
-                Spacer()
                 
                 HStack {
                     Text("Selected Color")
@@ -60,30 +53,11 @@ struct AddView: View {
                         .frame(width: 30, height: 30)
                         .foregroundColor(selectedColor)
                 }
-                .padding(.vertical, 20)
+                .padding(.vertical, 2)
                 
-                /**
-                 BEGIN DATE/CALENDAR LOGIC
-                 */
-                HStack {
-                    Text("Start Date")
-                        .fontWeight(.medium)
-                }
-                //.frame(maxWidth: .infinity, alignment: .leading) //<-- Here
-                
-                
-                DatePicker("Enter your date", selection: $pickedDate, in: ...Date())
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                /*
-                 DatePicker("Streak started on date:", selection: $pickedDate)
-                 .datePickerStyle(GraphicalDatePickerStyle())
-                 .frame(maxHeight: 400)
-                 
-                 */
                 Divider() // add a divider
                     .padding(.horizontal)
                     .padding(.vertical)
-                
                 HStack {
                     Button(action: saveButtonPressed, label: {
                         Text("Save".uppercased())
@@ -93,24 +67,28 @@ struct AddView: View {
                             .frame(maxWidth: 200)
                             .background(Color.accentColor)
                             .cornerRadius(10, antialiased: true)
-                        
-                        Button(action: clearButtonPressed, label: {
-                            Text("Clear".uppercased())
-                                .foregroundColor(.white)
-                                .font(.headline)
-                                .frame(height: 55)
-                                .frame(maxWidth: 200)
-                                .background(Color.gray)
-                                .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        })
+                            .shadow(radius: 10)
+                    })
+                    Button(action: clearButtonPressed, label: {
+                        Text("Clear".uppercased())
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .frame(height: 55)
+                            .frame(maxWidth: 200)
+                            .background(Color.gray)
+                            .cornerRadius(10, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            .shadow(radius: 10)
                     })
                 }
             }
-            .padding(14) // add some padding
+            .padding(20)
         }
         .navigationTitle("Add an activity ✍️")
         .alert(isPresented: $showAlert, content: getAlert)
     }
+    
+    /// END USER INTERFACE HERE
+    
     /**
      COLOR PICKER CALCULATIONS
      This is where we calculate what color value we want to set it to
@@ -144,11 +122,7 @@ struct AddView: View {
      */
     func saveButtonPressed() {
         if textIsAppropriate() { // if textIsAppropriate is true...
-            // find the difference between two dates
-            let diffs = Calendar.current.dateComponents([.day], from: pickedDate, to: todayDate)
-            print(diffs.day!)
-            
-            listViewModel.addItem(title: textFieldText, theDate: Int(diffs.day!), theStartDate: pickedDate, theColor: colorConverter())
+            listViewModel.addItem(title: textFieldText, theColor: colorConverter())
             presentationMode.wrappedValue.dismiss() // go back one in the presentation view hierarchy.
         }
         
@@ -183,4 +157,3 @@ struct AddView: View {
         return Alert(title: Text(alertTitle))
     }
 }
-

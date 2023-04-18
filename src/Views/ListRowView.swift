@@ -9,34 +9,21 @@ struct ListRowView: View {
     var body: some View {
         // This is where we put thenumber of days since calculation, nice and simple
         
-        // Difference between start date + today's date
-        // see if hour
-        let diffs = Calendar.current.dateComponents([.day], from: item.theStartDate, to: Date.now)
-        let diffsString = "\(diffs.day!)"
-        
         // View begins here
         HStack {
             
             /**
              The Design
              * User picks emoji for their goal
-             * [icon/colour] [name of goal] ------- [date information vstack]
+             * [checkbox] [icon/colour] [name of task]
              */
+            Image(systemName: item.isCompleted ? "checkmark.circle" : "circle") // if else
+                .foregroundColor(item.isCompleted ? .green : .red)
+            Text(item.title)
+            Spacer()
             Circle()
                 .frame(width: 30, height: 30)
                 .foregroundColor(colorConverter())
-            Text(item.title)
-            Spacer()
-            VStack(alignment: .trailing){
-                let dateStored = String(item.theDate)
-                
-                
-                Text(diffsString + " days")
-                
-                Text("Since: " + item.theStartDate.formatted())
-                    .font(.caption)
-                
-            }
         }
         .padding(.vertical, 8)
     }

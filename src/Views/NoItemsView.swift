@@ -3,6 +3,7 @@ import SwiftUI
 struct NoItemsView: View {
     
     @State var animate: Bool = false
+    @EnvironmentObject var listViewModel: ListViewModel
     
     
     var body: some View {
@@ -13,7 +14,7 @@ struct NoItemsView: View {
                     .fontWeight(.semibold)
                     .padding(40)
                 NavigationLink(
-                    destination: AddView(),
+                    destination: AddView().environmentObject(listViewModel),
                     label: {
                         Text("Add something! 📝")
                             .padding(.all, 16)
@@ -22,7 +23,7 @@ struct NoItemsView: View {
                             .font(.headline)
                             .cornerRadius(10.0, antialiased: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                             .frame(height: 55)
-                            .frame(maxWidth: .infinity) 
+                            .frame(maxWidth: .infinity)
                     }
                 )
                 .padding(.horizontal, animate ? 40 : 50)

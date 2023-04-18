@@ -26,27 +26,20 @@ struct ListView: View {
                     ForEach(listViewModel.items) {
                         item in ListRowView(item: item)
                             .onTapGesture {
-                                /**
-                                 This is currently working as a manual sync button, this will be replaced in time to be automatic and run like a CRON.
-                                 */
                                 withAnimation(.linear) {
-                                    listViewModel.updateItem(item: item) // update item
+                                    listViewModel.updateItem(item: item)
                                 }
                             }
                     }
                     .onDelete(perform: listViewModel.deleteItem) // all from "ListViewModel.swift"
+                    .onMove(perform: listViewModel.moveItem)
                 }
-                .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
             }
         }
         .navigationTitle("Infinity")
         .navigationBarItems(
             leading:
-                Button(action: {
-                    self.isEditing.toggle()
-                }) {
-                    Text(isEditing ? "✅" : "✏️")
-                },
+                EditButton(),
             trailing:
                 HStack {
                     NavigationLink("➕", destination: AddView().environmentObject(listViewModel))

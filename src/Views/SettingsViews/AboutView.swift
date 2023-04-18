@@ -4,12 +4,12 @@ struct AboutView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("About Infinity")
+                Text("About Onelist")
                     .font(.title)
                     .bold()
                     .padding()
                 
-                Text("Infinity is personal streak/habit tracking application designed to be elegant and simple.")
+                Text("Onelist is a minimal and easy to use to do list app.")
                     .padding()
                 
                 Spacer()
