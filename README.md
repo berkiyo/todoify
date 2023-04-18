@@ -26,5 +26,6 @@ Note: These are outdated for iPhone, this will change in final release.
 
 ### iPad
 
-<img src="media/1-ipad.png" width="80%"> 
-<img src="media/2-ipad.png" width="80%"> 
+<img src="media/1-ipad.png" width="100%"> 
+<img src="media/2-ipad.png" width="100%"> 
+<img src="media/3-ipad.png" width="100%"> 
