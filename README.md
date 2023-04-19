@@ -1,4 +1,4 @@
-# onelist
+# Todoify
 An elegant to do list app that is minimal and easy to use.
 
 ## What does it do?
